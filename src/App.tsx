@@ -17,7 +17,14 @@ const App: React.FC = () => {
     <NativeBaseProvider>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={MainScreen} />
+          <Stack.Screen
+            name="Home"
+            component={MainScreen}
+            options={{
+              headerShown: false
+            }}
+          />
+
           <Stack.Screen name="Other" component={OtherScreen} />
         </Stack.Navigator>
       </NavigationContainer>
