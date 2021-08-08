@@ -1,29 +1,26 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import {
-  NativeBaseProvider,
-  Box,
-  useColorMode,
-  useColorModeValue,
-  Button,
-  Heading,
-  Container
-} from 'native-base';
+import { NativeBaseProvider } from 'native-base';
+
+// Navigation
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+// Screens
+import MainScreen from './Screens/Main';
+import OtherScreen from './Screens/Other';
+
+const Stack = createStackNavigator();
 
 const App: React.FC = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
-  const bg = useColorModeValue("gray.200", "gray.800");
-
   return (
     <NativeBaseProvider>
-      <Box bg={bg} flex={1}>
-        <Heading>
-          Budgeting App
-        </Heading>
-
-        <Button onPress={() => toggleColorMode()}>
-          Hello
-        </Button>
-      </Box>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={MainScreen} />
+          <Stack.Screen name="Other" component={OtherScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </NativeBaseProvider>
   );
 }
